@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max 4
+void main()
+{
+    char q[10];
+    int f=0,r=0,count=0,ch;
+    while(1)
+    {
+      printf("MAIN MENU FOR CIRCULAR QUEUE");
+      printf("1.insert an element\n2.delelte an element\n3.display the conents\n4.exit");
+      printf("Enter your choice :\n");
+      scanf("%d",&ch);
+      switch(ch)
+      {
+          case 1:insert(q,&r,&count);
+                  break;
+          case 2:deleteq(q,&f,&count);
+                  break;
+          case 3:display(q,f,count);
+                   break;
+           case 4:exit(0);
+                  break;
+                  default:printf("Enter a valid choice");
+                      break;
+      }
+    }
+}
+void insert(char q[],int *r,int *count)
+{
+    char item;
+    if(*count==max)
+    {
+        printf("Queue overflow");
+    }
+    else
+    {
+        printf("\n Enterthe element to be inserted\n");
+        scanf("%c",&item);
+        *r=(*r+1)%max;
+        q[*r]=item;
+        *count++;
+    }
+}
+void deleteq(char q[],int *f,int *count)
+{
+  if(*count==0)
+  {
+      printf("Queue underflow");
+  }
+  else
+  {
+      printf("Deleted element is %c",q[*f]);
+      *f=(*f+1)%max;
+      *count--;
+  }
+}
+void display(char q[],int f,int count)
+{
+    int i,j;
+    if(count==0)
+    {
+        printf("Queue underflow");
+    }
+    else
+    {
+        j=f;
+        printf("Queue elements are\n");
+        for(i=0;i<count;i++)
+        {
+            printf("%c\n",q[j]);
+            j=(j+1)%max;
+        }
+    }
+}
