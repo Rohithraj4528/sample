@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+  int info;
+  struct node *llink,*rlink;
+};
+typedef struct node *NODE;
+  NODE insert(NODE root,int item)
+  {
+    NODE cur,prev,temp;
+    temp=(NODE)malloc(sizeof(struct node));
+    temp->info=item;
+    temp->llink=temp->rlink=NULL;
+     if(root==NULL)
+             return temp;
+      cur=root;
+      while(cur!=NULL)
+      {
+        prev=cur;
+        if(cur->info==item)
+        {
+         printf("Elements already exists \n");
+         free(temp);
+         return root;
+        }
+        if(cur->info<item)
+        cur=cur->rlink;
+        else
+          cur=cur->llink;
+        }
+        if(prev->info<item)
+          prev->rlink=temp;
+        else
+          prev->llink=temp;
+          return root;
+  }
