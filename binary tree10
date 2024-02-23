@@ -35,3 +35,90 @@ typedef struct node *NODE;
           prev->llink=temp;
           return root;
   }
+ void preorder(NODE root)
+  {
+    if(root==NULL)
+            return;
+    printf("%d",root->info);
+    preorder(root->llink);
+    preorder(root->rlink);
+  }
+  void inorder(NODE root)
+  {
+    if(root==NULL)
+      return;
+    inorder(root->llink);
+    printf("%d",root->info);
+    inorder(root->rlink);
+  }
+  void postorder(NODE root)
+  {
+  if(root==NULL)
+  return;
+  postorder(root->llink);
+  postorder(root->rlink);
+  printf("%d",root->info);
+  }
+  void search(NODE root,int key)
+  {
+    NODE cur;
+    if(root==NULL)
+    {
+       printf("tree is empty");
+       return;
+    }
+    cur=root;
+    while(cur!=NULL)
+    {
+        if(cur->info==key)
+        {
+ printf("key element found\n");
+         return;
+        }
+        if(cur->info<key)
+          cur=cur->rlink;
+        else
+        cur=cur->llink;
+    }
+    printf("key not found\n");
+  }
+void main()
+{
+  int ch,item,key,x;
+  NODE root;
+  root=NULL;
+  while(1)
+  {
+     printf("1.insert to binary search tree\n2.inorder traversal\n3.preorder traversal\n4.postorder traversal\n5.search binary search tree\n6.Exit\n");
+     printf("Enter your choice :\n");
+     scanf("%d",&ch);
+     switch(ch)
+     {
+       case 1:do
+              {
+                printf("Enter the item to be inserted \n");
+                scanf("%d",&item);
+                root=insert(root,item);
+                printf("Enter 1to continue 0 to Exit\n");
+                scanf("%d",&x);
+              }
+              while(x);
+              {
+                break;
+        case 2:inorder(root);
+               break;
+         case 3:preorder(root);
+case 4:postorder(root);
+          case 5:printf("Enter the key to be searched");
+                scanf("%d",&key);
+                search(root,key);
+                break;
+         case 6:exit(0);
+                break;
+         default:printf("Enter a valid choice");
+                 break;
+              }
+     }
+  }
+}
+
